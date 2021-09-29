@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import React,{Component} from "react";
+import { ReactDOM } from "react";
+import { BrowserRouter, Switch , Route, Link} from 'react-router-dom';
+import Home from "./components/Home";
+import EditUser from "./components/EditUser";
+import AddUser from "./components/AddUser";
 import './App.css';
+import {GlobalProvider} from './contacts/GlobalState';
 
-function App() {
+const App = () => {
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div  style={{maxWidth:'30rem',margin:'4rem auto', fontFamily: 'monospace,Helvatica'}}>
+       <GlobalProvider>
+       <BrowserRouter >
+        <Switch>
+             <Route exact path="/" component={Home} />
+             <Route path="/add" component={AddUser} /> 
+             <Route path="/edit/:id" component={EditUser}/>
+
+        </Switch>
+         </BrowserRouter>
+               
+
+       </GlobalProvider>
+        </div>
+
   );
 }
 
